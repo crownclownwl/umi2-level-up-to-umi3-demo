@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
+  <title><%= context.title %></title>
+  <link href="https://cdn.bootcss.com/antd-mobile/2.2.14/antd-mobile.min.css" rel="stylesheet">
+  <!-- 根据需求决定是否加入 -->
+  <link href="https://cdn.bootcss.com/antd/3.19.8/antd.min.css" rel="stylesheet">
+</head>
+<body>
+<div id="root"></div>
+<% if(context.env === 'production') { %>
+  <script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+  <script src="https://cdn.bootcss.com/react/16.8.6/umd/react.production.min.js"></script>
+  <script src="https://cdn.bootcss.com/react-dom/16.8.6/umd/react-dom.production.min.js"></script>
+  <script src="https://cdn.bootcss.com/axios/0.19.0/axios.min.js"></script>
+  <script src="https://cdn.bootcss.com/lodash.js/4.17.11/lodash.min.js"></script>
+  <script src="https://cdn.bootcss.com/antd/3.19.8/antd.min.js"></script>
+  <script src="https://cdn.bootcss.com/antd-mobile/2.2.14/antd-mobile.min.js"></script>
+
+<script>
+  console.log(window.React)
+  console.log(window.ReactDOM)
+  console.log(window['antd'])
+  console.log(window['antd-mobile'])
+  var AntdMobile = window['antd-mobile'];
+
+/* CDN with UA android | ios | pc */
+  if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+    window.platform ="ios";
+  } else if (/(Android)/i.test(navigator.userAgent)) {
+    window.platform ="android";
+  } else {
+    window.platform ="pc";
+  };
+  var script = document.createElement("script");
+  script.src = "http://cdn.idealworkshops.com/cordova/"+window.platform+"/cordova.js";
+  document.body.appendChild(script);
+</script>
+<% } else {%>
+  <script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+  <script src="https://cdn.bootcss.com/react/16.8.6/umd/react.production.min.js"></script>
+  <script src="https://cdn.bootcss.com/react-dom/16.8.6/umd/react-dom.production.min.js"></script>
+  <script src="https://cdn.bootcss.com/axios/0.19.0/axios.min.js"></script>
+  <script src="https://cdn.bootcss.com/lodash.js/4.17.11/lodash.min.js"></script>
+  <script src="https://cdn.bootcss.com/antd/3.19.8/antd.min.js"></script>
+  <script src="https://cdn.bootcss.com/antd-mobile/2.2.14/antd-mobile.min.js"></script>
+  <script src="http://leaverou.github.com/prefixfree/prefixfree.min.js"></script>
+<!-- 开发模式 -->
+  <script>
+    console.log(window.React)
+    console.log(window.ReactDOM)
+    console.log(window['antd'])
+    console.log(window['antd-mobile'])
+    var AntdMobile = window['antd-mobile'];
+
+    var isMobile = true;
+    
+   
+    /* CDN with UA android | ios | pc */
+    if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+        window.platform ="ios";
+        isMobile = true;
+    } else if (/(Android)/i.test(navigator.userAgent)) {
+        window.platform ="android";
+        isMobile = true;
+    } else {
+        window.platform ="pc";
+        isMobile = false;
+    };
+
+    // 是本地电脑
+    if(window.location.href.startsWith("http://localhost:")){
+        window.platform ="pc";
+        isMobile = false;
+    }
+
+    if(isMobile === true){
+        var script = document.createElement("script");
+        script.src = "http://cdn.idealworkshops.com/cordova/"+window.platform+"/cordova.js";
+        document.body.appendChild(script);
+    }
+  </script>
+<% } %>
+</body>
+</html>
+
